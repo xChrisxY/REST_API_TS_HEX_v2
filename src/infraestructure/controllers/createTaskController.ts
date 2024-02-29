@@ -1,7 +1,7 @@
 import { Request, Response, json } from "express";
 import { CreateTask } from "../../application/createTask";
 import ioClient from 'socket.io-client';
-const socket = ioClient('http://localhost:3002')
+const socket = ioClient('https://server-ws.onrender.com')
 
 export class CreateTaskController {
 
@@ -10,6 +10,8 @@ export class CreateTaskController {
       async run(req: Request, res: Response) {
 
             const data = req.body;
+            console.log('viendo la data: ');
+            console.log(data)
 
             try {
                   
@@ -39,7 +41,7 @@ export class CreateTaskController {
 
                   } else {
 
-                        res.status(401).json({
+                        res.status(400).json({
                               success : false,
                               data : 'NO fue posible agregar la tarea',
                               
